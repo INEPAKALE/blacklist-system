@@ -8,9 +8,9 @@ def save_data(data_list, filename):
                 file.write(person + "\n")
 if os.path.isfile(DB_FILE):
     with open(DB_FILE, "r", encoding='utf-8') as file:
-        blacklist = file.read().splitlines()
+        blacklist = set(file.read().splitlines())
 else:
-    blacklist = []
+    blacklist = set()
     print("Database file not found, new list created.")
 
 while True:
@@ -21,7 +21,7 @@ while True:
 
     elif name == "Add":
         new_name = input('Enter a name for the blacklist: ').capitalize().strip()
-        blacklist.append(new_name)
+        blacklist.add(new_name)
       
         save_data(blacklist, DB_FILE)
         print(f'{new_name} added and saved.')
