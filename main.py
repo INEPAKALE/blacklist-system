@@ -1,8 +1,25 @@
 import os, argparse
 
+def check_user(username):
+        try:
+            with open(DB_FILE, "r", encoding='utf-8') as file:
+                blacklist = set(file.read().splitlines())
+            if username in blacklist:
+                 print('ACCESS DENIED!')
+                 exit(1)
+            else:
+                 print('Welcome, access granted.')
+                 exit(0)
+        except FileNotFoundError:
+             print('The database is empty.')
+             print('welcome')
+             exit(0)
+        except PermissionError:
+             print('No access rights')
+             exit(1)
+
+
 DB_FILE = "blacklist.txt"
-
-
 def save_data(data_list, filename):
         with open(filename, "w", encoding='utf-8') as file:
             for person in data_list:
