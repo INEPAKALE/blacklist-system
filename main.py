@@ -27,7 +27,8 @@ DB_FILE = "blacklist.txt"
 def save_data(data_list, filename):
     with open(filename, "w", encoding="utf-8") as file:
         for person in data_list:
-            file.write(person + "\n")
+            file.write(person + "\n")  
+
 
 def main():
     if os.path.isfile(DB_FILE):
@@ -63,5 +64,7 @@ def main():
             print(f"{rm_name} removed from the list and file.")
         else:
             print("This name is not on the list.")
+
+
 if __name__ == "__main__":
     main()
