@@ -1,15 +1,20 @@
 # Blacklist CLI Utility
 
 ## Description
-A command-line utility designed for efficient blacklist management. Implemented in Python, it utilizes hash sets to ensure $O(1)$ average time complexity for lookups.
+A command-line utility for efficient system blacklist management. Implemented in Python, it leverages hash-maps (dictionaries) to ensure $O(1)$ average time complexity for identity lookups.
 
 ## Usage
-The utility interacts directly with the Ubuntu file system.
-- `python3 main.py --add <name>` — Add an element to the set.
-- `python3 main.py --check <name>` — Check for entry existence (exit code 0: Allowed, 1: Denied).
-- `python3 main.py --remove <name>` — Remove an element from the set.
+The utility interacts with the local storage via JSON-backed state.
+
+* **Check Access:**
+  `python3 main.py --check <name>`
+  *Exit codes:* `0` - Allowed (Access Granted), `1` - Denied (Blocked).
+
+* **Modify Blacklist:**
+  `python3 main.py --add <name> [--reason <reason>]` - Adds user with an optional block description.
+  `python3 main.py --remove <name>` - Removes user and clears their metadata.
 
 ## Technical Specifications
-- **Algorithmic Complexity:** Lookup operations are performed using `set` data structures, ensuring $O(1)$ efficiency.
-- **Interface:** Declarative argument parsing implemented via `argparse`.
-- **Persistence:** Data is persisted via synchronized writes to a `.txt` file.
+* **Data Structure:** Python `dict` backing, ensuring $O(1)$ search bottlenecks.
+* **CLI Interface:** Declarative argument parsing via `argparse`.
+* **Persistence Layer:** Full state serialization to a `.json` file using standard I/O blocks.
