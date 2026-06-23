@@ -1,13 +1,14 @@
 import os
 import argparse
 import json
+from datetime import date
 
 DB_FILE = "blacklist.json"
 
 
 def save_data(data_list, filename):
     with open(filename, "w", encoding="utf-8") as file:
-        json.dump(data_list, file, indent=4, ensure_ascii=False)
+        json.dump(data_list, file, indent=4, ensure_ascii=False, default=custom_converter)
 
 
 def load_blacklist(filepath):
@@ -21,6 +22,13 @@ def load_blacklist(filepath):
         return {}
     except json.JSONDecodeError:
         return {}
+
+
+
+def custom_converter(current_date):
+    if isinstance(current_date, date):
+        return current_date.isoformat()
+    raise TypeError(f"Type {type(current_date)} not supported")
 
 
 def main():
@@ -41,7 +49,9 @@ def main():
         else:
             reason = "reason not specified"
 
-        current_date = "2026-06-18"
+        current_date = date.today()       
+
+
 
         new_name = args.add.capitalize().strip()
         blacklist[new_name] = {
