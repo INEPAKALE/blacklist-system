@@ -1,0 +1,7 @@
+# values ​​for the connection pool
+SQLALCHEMY_POOL_SIZE = 20
+SQLALCHEMY_MAX_OVERFLOW = 10
+POOL_TIMEOUT = 30
+POOL_RECYCLE = 1800
+POOL_PRE_PING = True
+ECHO= False

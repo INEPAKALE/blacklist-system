@@ -20,8 +20,7 @@ if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
 
-from src.models.base import Base
-
+from database.models.base import Base
 
 target_metadata = Base.metadata
 
@@ -54,9 +53,12 @@ async def run_migrations_online() -> None:
     connectable = async_engine_from_config(
         config.get_section(config.config_ini_section, {}),
         prefix="sqlalchemy.",
-        poolclass=pool.NullPool if "poolclass" not in config.get_section(config.config_ini_section, {}) else None,
+        poolclass=(
+            pool.NullPool
+            if "poolclass" not in config.get_section(config.config_ini_section, {})
+            else None
+        ),
     )
-
 
     async with connectable.connect() as connection:
 
