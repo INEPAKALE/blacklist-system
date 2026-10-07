@@ -3,8 +3,8 @@ from sqlalchemy import String, Boolean
 from base import Base
 
 
-class users(Base):
-    __tablename__ = "Users"
+class Users(Base):
+    __tablename__ = "users"
 
     id: Mapped[int] = mapped_column(primary_key=True)
     username: Mapped[str] = mapped_column(String(50))
