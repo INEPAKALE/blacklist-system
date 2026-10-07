@@ -9,7 +9,7 @@ class UserLogin(BaseModel):
 
 class UserBase(BaseModel):
     username: str = Field(..., min_length=2, max_length=50)
-    email: EmailStr = Field(..., max_length=2, max_length=254 )
+    email: EmailStr = Field(..., max_length=2, max_length=254)
 
 
 class UserCreate(UserBase):
