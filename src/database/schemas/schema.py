@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field, EmailStr
+from pydantic import BaseModel, Field, EmailStr, field_serializer
 from datetime import date, timedelta
 
 
@@ -28,3 +28,7 @@ class BlacklistedUser(UserBase):
     blocking_time: timedelta = Field(
         ..., description="Duration for which the user is blocked", examples=["5 years"]
     )
+
+    @field_serializer("blocked_at")
+    def serialize_date(self, date: date) -> str:
+        return date.strftime("%Y/%m/%d")
