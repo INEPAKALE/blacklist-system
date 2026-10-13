@@ -1,11 +1,13 @@
 from __future__ import annotations
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from sqlalchemy import String, Boolean, ForeignKey, Date, Interval
+from sqlalchemy import String, ForeignKey, Date, Interval
 from datetime import date, timedelta
+from typing import TYPE_CHECKING
 from .base import Base
-from .users import Users
 
 
+if TYPE_CHECKING:
+    from .users import Users
 
 
 class BlockedUsers(Base):

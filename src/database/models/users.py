@@ -1,10 +1,12 @@
 from __future__ import annotations
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy import String, Boolean
+from typing import TYPE_CHECKING
 from .base import Base
-from .blocked_users import BlockedUsers 
 
 
+if TYPE_CHECKING:
+    from .blocked_users import BlockedUsers
 
 class Users(Base):
     __tablename__ = "users"
