@@ -1,10 +1,11 @@
+from __future__ import annotations
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy import String, Boolean, ForeignKey, Date, Interval
-from base import Base
 from datetime import date, timedelta
-from users import Users
+from .base import Base
+from .users import Users
 
-manager: Mapped["Users"] = relationship(back_populates="users")
+
 
 
 class BlockedUsers(Base):

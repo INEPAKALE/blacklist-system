@@ -1,7 +1,9 @@
+from __future__ import annotations
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy import String, Boolean
-from base import Base
-from blocked_users import BlockedUsers
+from .base import Base
+from .blocked_users import BlockedUsers 
+
 
 
 class Users(Base):
