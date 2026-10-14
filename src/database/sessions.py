@@ -28,6 +28,9 @@ engine = create_async_engine(
 
 app = FastAPI()
 
+
+SessionLocal = async_sessionmaker(engine)
+
 async def get_db():
-    async with async_sessionmaker() as session:
+    async with SessionLocal() as session:
         yield session
