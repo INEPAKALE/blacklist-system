@@ -9,11 +9,13 @@ router = APIRouter(prefix="/users", tags=["users"])
 
 @router.get("/{id}")
 async def get_user(id: int, session: AsyncSession = Depends(get_db)):
-    user = await check_user(session, id)
+    get_user = await check_user(session, id)
 
-    if user is None:
+    if get_user is None:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND, detail="user not found"
         )
 
-    return JSONResponse({"user": user.dict(), "id": id})
+    return JSONResponse({"user": get_user.dict(), "id": id})
+
+
