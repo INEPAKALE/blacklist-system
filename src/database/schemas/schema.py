@@ -32,3 +32,15 @@ class BlacklistedUser(UserBase):
     @field_serializer("blocked_at")
     def serialize_date(self, date: date) -> str:
         return date.strftime("%Y/%m/%d")
+
+
+class UpdateUser(BaseModel):
+    username: str | None = Field(
+        default=None,
+        min_length=2,
+        max_length=50,
+    )
+    email: EmailStr | None = Field(
+        default=None,
+        max_length=254,
+    )
