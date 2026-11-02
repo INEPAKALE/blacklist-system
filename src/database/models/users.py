@@ -17,6 +17,7 @@ class Users(Base):
     password_hash: Mapped[str] = mapped_column(String(255))
     is_active: Mapped[bool] = mapped_column(Boolean, default=False)
     login: Mapped[str] = mapped_column(String(30), unique=True)
+    is_admin: Mapped[bool] = mapped_column(default=False)
 
 
     block: Mapped["BlockedUsers"] = relationship(
